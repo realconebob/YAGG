@@ -1,0 +1,3 @@
+# YAGG: Yet Another Gun Game
+
+Imagine a csgo gungame but the gun you use is based off money. Each kill grants some amount of money, and each bullet costs some amount. Cheaper, worse guns cost less (if any at all), while things like the AWP cost so much that even with a kill you will always be net negative for shooting it. Each bullet spends some money, and each kill earns some (more or less depending on the gun used & kill method. Say extra money for a headshot over a bodyshot). Maybe you need to buy the gun first to shoot it, maybe using a gun too much means the cost of bullets goes up supply and demand style
