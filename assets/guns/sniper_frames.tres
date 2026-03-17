@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cb1e0ohggsjf2"]
+
+[ext_resource type="Texture2D" uid="uid://go2gav2p3tg0" path="res://assets/guns/sprites/sniper5.png" id="1_u7g3r"]
+[ext_resource type="Texture2D" uid="uid://d2r64oieoovmo" path="res://assets/guns/sprites/sniper1.png" id="2_3dq7t"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"down-left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"down-right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u7g3r")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3dq7t")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up-left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up-right",
+"speed": 5.0
+}]
