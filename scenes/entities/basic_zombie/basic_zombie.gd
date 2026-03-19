@@ -16,11 +16,11 @@ func _physics_process(delta: float) -> void:
 	# Mindlessly walk at the target
 	var dir := (target - position).normalized()
 	set_accel(dir * accel_rate)
-	
+
 	do_movement(delta)
-	
+
 func set_target(trgt: Vector2) -> void:
 	target = trgt
-	
+
 func get_target() -> Vector2:
 	return target

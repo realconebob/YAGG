@@ -30,7 +30,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# If the player is directly visible, and the charge timer is free, and a charge chance check is reached
 	# charge at the player. Otherwise, move towards them like a basic zombie
-	
+
 	if is_target_visible() and is_charge_ready and !is_charging:
 		var check := randf()
 		if check <= charge_chance:
@@ -39,11 +39,11 @@ func _physics_process(delta: float) -> void:
 			charge_cooldown_timer.start(bzkzomb_dtmr)
 			charge_chance = bzkzomb_dcrg
 		else: charge_chance += bzkzomb_dcri * delta
-	
+
 	if is_charging:
 		# do charge
 		pass
-	
+
 	do_movement(delta)
 	return
 
