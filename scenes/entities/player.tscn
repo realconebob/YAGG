@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://oy0a41w282np"]
 
-[ext_resource type="Script" uid="uid://bcrsvnc6506lt" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://hijh8m2n641a" path="res://scenes/entities/player.gd" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
 
-[node name="Player" type="CharacterBody2D" unique_id=2038243766]
+[node name="Player" type="CharacterBody2D" unique_id=535306126]
 motion_mode = 1
 script = ExtResource("1_4flbx")
+metadata/_custom_type_script = "uid://bcrsvnc6506lt"
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2044731638]
