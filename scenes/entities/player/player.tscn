@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://oy0a41w282np"]
 
-[ext_resource type="Script" uid="uid://hijh8m2n641a" path="res://scenes/entities/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://hijh8m2n641a" path="res://scenes/entities/player/player.gd" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 
@@ -12,7 +12,7 @@ script = ExtResource("1_4flbx")
 metadata/_custom_type_script = "uid://bcrsvnc6506lt"
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2044731638]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2044731638]
 shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1804173352]

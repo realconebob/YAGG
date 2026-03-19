@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cr00ixukqupi7"]
 
-[ext_resource type="PackedScene" uid="uid://oy0a41w282np" path="res://scenes/entities/player.tscn" id="1_0uhle"]
+[ext_resource type="PackedScene" uid="uid://oy0a41w282np" path="res://scenes/entities/player/player.tscn" id="1_0uhle"]
 
 [node name="BattleGround" type="Node2D" unique_id=1797238087]
 
