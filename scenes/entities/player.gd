@@ -8,31 +8,15 @@ func _physics_process(delta: float) -> void:
 	var lf := Input.is_action_pressed(&"move_left")
 	var rt := Input.is_action_pressed(&"move_right")
 	var dw := Input.is_action_pressed(&"move_down")
-	var temp_accel := Vector2.ZERO
-	var accelr := accel_rate
-	if !accelr:
-		assert(false, "accelr is unset") # why!?!?!?!?!?!?
 	
-	if dw: 
-		print("down")
-		temp_accel = Vector2(0, accelr.y)
-	
-	if up:
-		print("up") 
-		temp_accel = Vector2(0, -accelr.y)
-	
-	if rt: 
-		print("right")
-		temp_accel = Vector2(accelr.x, 0)
-		print(temp_accel)
-	
-	if lf: 
-		print("left")
-		temp_accel = Vector2(-accelr.x, 0)
-	print(temp_accel)
-	
-	set_accel(get_global_mouse_position() - position) # confirmation that I'm not going insane
-	super._physics_process(delta) # god damn it godot you suck
+	var dir := Vector2.ZERO
+	if up: dir += Vector2(0, -1)
+	if lf: dir += Vector2(-1, 0)
+	if rt: dir += Vector2(1, 0)
+	if dw: dir += Vector2(0, 1)
+
+	set_accel(dir * accel_rate)
+	super._physics_process(delta)
 	
 	point_to_cursor()
 	return
