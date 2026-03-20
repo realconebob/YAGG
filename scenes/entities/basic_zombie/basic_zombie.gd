@@ -1,7 +1,7 @@
 class_name BasicZombie
 extends BaseEntity
 
-const bzomb_dmms: float = 600
+const bzomb_dmms: float = 300
 const bzomb_dacc: Vector2 = Vector2.ZERO
 const bzomb_dacr: float = bzomb_dmms * 2
 const bzomb_ddmp: float = 1.1

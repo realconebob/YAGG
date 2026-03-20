@@ -22,3 +22,7 @@ sprite_frames = SubResource("SpriteFrames_sh265")
 points = PackedVector2Array(0, 0, 100, 0)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
+
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=315891601]
+
+[node name="DamageFlashTimer" type="Timer" parent="InvincibilityTimer" unique_id=2070458555]

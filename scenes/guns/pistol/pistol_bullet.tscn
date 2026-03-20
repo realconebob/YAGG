@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cf0odvrd7wvct"]
+
+[ext_resource type="Script" uid="uid://b2345io8qjhsn" path="res://scenes/guns/pistol/pistol_bullet.gd" id="1_g1yat"]
+[ext_resource type="SpriteFrames" uid="uid://dxv82py73ph1f" path="res://assets/guns/pistol_bullet_frames.tres" id="2_58fmc"]
+
+[node name="PistolBullet" type="CharacterBody2D" unique_id=1424517683]
+script = ExtResource("1_g1yat")
+metadata/_custom_type_script = "uid://bcrsvnc6506lt"
+metadata/_edit_lock_ = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1344700803]
+sprite_frames = ExtResource("2_58fmc")
+frame_progress = 0.8593766
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=743583707]
+position = Vector2(3.6054451, 6.263408)
+polygon = PackedVector2Array(-42.605446, -126.263405, 12.394555, -129.26341, 54.394554, -125.263405, 97.394554, -74.263405, 109.394554, 3.7365918, 112.394554, 85.736595, 68.394554, 114.736595, -6.605445, 114.736595, -89.605446, 96.736595, -124.605446, 74.736595, -116.605446, 15.736591, -96.605446, -55.26341, -69.605446, -105.263405)
+metadata/_edit_lock_ = true

@@ -15,8 +15,8 @@ func _physics_process(delta: float) -> void:
 	if rt: dir += Vector2(1, 0)
 	if dw: dir += Vector2(0, 1)
 
-	set_accel(dir * accel_rate)
-	super._physics_process(delta)
+	set_accel(dir.normalized() * accel_rate)
+	do_movement(delta)
 
 	point_to_cursor()
 	return

@@ -1,8 +1,8 @@
 extends BasicZombie
 
-const bzkzomb_dmms: float = 300
+const bzkzomb_dmms: float = bzomb_dmms / 2
 const bzkzomb_dacc: Vector2 = Vector2.ZERO
-const bzkzomb_dacr: float = bzomb_dmms * 10
+const bzkzomb_dacr: float = default_mms * 10
 const bzkzomb_ddmp: float = 1.5
 
 const bzkzomb_dcms: float = bzkzomb_dmms * 10
@@ -25,6 +25,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	charge_cooldown_timer.timeout.connect(process_charge_cooldown_timer)
+	charge_timer.timeout.connect(process_charge_timer)
 	return
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		if check <= charge_chance:
 			is_charging = true
 			is_charge_ready = false
+			charge_timer.start(bzkzomb_dctmr)
 			charge_cooldown_timer.start(bzkzomb_dtmr)
 			charge_chance = bzkzomb_dcrg
 		else: charge_chance += bzkzomb_dcri * delta
@@ -54,6 +56,10 @@ func is_target_visible() -> bool:
 # Called when charge timer times-out
 func process_charge_cooldown_timer() -> void:
 	is_charge_ready = true
+	return
+
+func process_charge_timer() -> void:
+	is_charging = false
 	return
 
 func set_target(trgt: Vector2) -> void:
