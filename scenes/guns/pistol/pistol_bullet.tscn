@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf0odvrd7wvct"]
 
 [ext_resource type="Script" uid="uid://b2345io8qjhsn" path="res://scenes/guns/pistol/pistol_bullet.gd" id="1_g1yat"]
-[ext_resource type="SpriteFrames" uid="uid://dxv82py73ph1f" path="res://assets/guns/pistol_bullet_frames.tres" id="2_58fmc"]
+[ext_resource type="SpriteFrames" uid="uid://dxv82py73ph1f" path="res://assets/guns/revolver_bullet_frames.tres" id="2_58fmc"]
 
 [node name="PistolBullet" type="CharacterBody2D" unique_id=1424517683]
 script = ExtResource("1_g1yat")

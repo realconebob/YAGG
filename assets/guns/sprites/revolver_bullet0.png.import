@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0fgwdeiwc7yp"
-path="res://.godot/imported/shotty1.png-9adf6d78cb361cf0c06f76a132c212a1.ctex"
+uid="uid://bbs8yjp7lnlv2"
+path="res://.godot/imported/revolver_bullet0.png-2b2a75c6f46deda9c4d58f85b43cd42b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/guns/sprites/shotty1.png"
-dest_files=["res://.godot/imported/shotty1.png-9adf6d78cb361cf0c06f76a132c212a1.ctex"]
+source_file="res://assets/guns/sprites/revolver_bullet0.png"
+dest_files=["res://.godot/imported/revolver_bullet0.png-2b2a75c6f46deda9c4d58f85b43cd42b.ctex"]
 
 [params]
 

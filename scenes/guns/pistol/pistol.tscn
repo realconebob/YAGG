@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dck6t6hwobivo"]
 
-[ext_resource type="SpriteFrames" uid="uid://bpwd0s78a8llf" path="res://assets/guns/pistol_frames.tres" id="1_i76hi"]
+[ext_resource type="SpriteFrames" uid="uid://bpwd0s78a8llf" path="res://assets/guns/revolver_frames.tres" id="1_i76hi"]
 [ext_resource type="Script" uid="uid://d12avg1in6k5k" path="res://scenes/guns/pistol/pistol.gd" id="1_pcmvo"]
 
 [node name="Pistol" type="Node2D" unique_id=51494483]
@@ -13,9 +13,9 @@ animation = &"right"
 metadata/_edit_lock_ = true
 
 [node name="BarrelEnd" type="Node2D" parent="." unique_id=997695264]
-position = Vector2(26, -10)
+position = Vector2(92, -71)
 metadata/_edit_lock_ = true
 
 [node name="Handhold" type="Node2D" parent="." unique_id=773589544]
-position = Vector2(-9, 0)
+position = Vector2(-77, 39)
 metadata/_edit_lock_ = true
