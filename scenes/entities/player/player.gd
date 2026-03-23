@@ -25,7 +25,7 @@ func point_to_cursor() -> void:
 	var mouse_pos := get_global_mouse_position()
 
 	# TODO: This will be replaced with the gun
-	$Line2D.look_at(mouse_pos)
+	$GunSet.look_at(mouse_pos)
 
 	# TODO: Update direction the player sprite is facing based on cursor pos
 

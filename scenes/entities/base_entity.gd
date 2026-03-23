@@ -6,8 +6,8 @@ signal revived(entity: BaseEntity)
 signal took_damage(entity: BaseEntity)
 signal took_healing(entity: BaseEntity)
 
-signal mac_collided(collider: KinematicCollision2D)
-signal mas_collided(colliders: Array[KinematicCollision2D])
+signal mac_collided(collidee: BaseEntity, collider: KinematicCollision2D)
+signal mas_collided(collidee: BaseEntity, colliders: Array[KinematicCollision2D])
 # must fight the urge to put a signal on every setter function
 
 const default_mms: float = 1200
@@ -77,11 +77,11 @@ func exec_movement(delta: float) -> void:
 			for i in get_slide_collision_count():
 				colliders.append(get_slide_collision(i))
 			
-			mas_collided.emit(colliders)
+			mas_collided.emit(self, colliders)
 		
 	else: 
 		var collider := move_and_collide(velocity * delta)
-		if collider: mac_collided.emit(collider)
+		if collider: mac_collided.emit(self, collider)
 	
 	return
 

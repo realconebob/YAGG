@@ -11,6 +11,6 @@ func _physics_process(delta: float) -> void:
 	$BasicZombie.set_target($Player.position)
 	return
 
-func mac_detect_collision(collider: KinematicCollision2D) -> void:
+func mac_detect_collision(_colidee: BaseEntity, collider: KinematicCollision2D) -> void:
 	print("COLLISION! Collider type: %s" % [collider.get_collider().get_class()])
 	return

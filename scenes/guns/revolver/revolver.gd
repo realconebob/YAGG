@@ -1,6 +1,6 @@
 extends BaseGun
 
-const boolet := preload("res://scenes/guns/pistol/pistol_bullet.tscn")
+const boolet := preload("res://scenes/guns/revolver/revolver_bullet.tscn")
 
 func _init() -> void:
 	super(boolet)
