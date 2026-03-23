@@ -19,3 +19,9 @@ func create_bullets() -> Array[BaseEntity]:
 	
 func get_gun_sprite() -> AnimatedSprite2D:
 	return $Sprites
+	
+func get_barrel_end() -> Node2D:
+	return $BarrelEnd
+	
+func get_hand_hold() -> Node2D:
+	return $Handhold

@@ -73,6 +73,9 @@ func select_gun(index: int, mod: bool = true) -> int:
 	enabled_guns[gun_ind].visible = true
 	return gun_ind
 
+func get_cur_gun() -> BaseGun:
+	return enabled_guns[gun_ind]
+
 func set_reading_input(reading_input: bool) -> void:
 	is_reading_input = reading_input
 	

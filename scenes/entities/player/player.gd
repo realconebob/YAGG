@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 	var handpos: Vector2 = $Hand.position
 	hand_mag = handpos.length()
-	$GunSet.position = handpos
+	#$GunSet.position = handpos
 	
 	return
 
@@ -34,13 +34,19 @@ func _physics_process(delta: float) -> void:
 
 func point_to_cursor() -> void:
 	var gunset := $GunSet
-	var mouse_pos := get_global_mouse_position()
-	var theta: float = gunset.get_angle_to(mouse_pos)
+	var cur_gun: BaseGun = gunset.get_cur_gun()
+	var barrel_end: Node2D = cur_gun.get_barrel_end() # For later
 	
-	gunset.position = Vector2(hand_mag * cos(theta), hand_mag * sin(theta))
-	gunset.rotation = -theta
-		# What the fuck is going on
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var pointing_vec: Vector2 = (mouse_pos - self.global_position) as Vector2
+	var angle: float = pointing_vec.normalized().angle()
 	
+	gunset.global_rotation = angle
+	gunset.position.x = 25 * cos(angle - self.global_rotation)
+	gunset.position.y = 25 * sin(angle - self.global_rotation)
+	
+	# TODO: Include the hand_hold offset from the current gun
+
 	# TODO: Update direction the player sprite is facing based on cursor pos
 
 	return

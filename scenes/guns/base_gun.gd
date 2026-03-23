@@ -34,6 +34,14 @@ func get_gun_sprite() -> AnimatedSprite2D:
 	assert(false, "<BaseGun::get_gun_sprite> Error: This function is to be overwritten")
 	return null
 
+func get_barrel_end() -> Node2D:
+	assert(false, "<BaseGun::get_barrel_end> Error: This function is to be overwritten")
+	return null
+
+func get_hand_hold() -> Node2D:
+	assert(false, "<BaseGun::get_hand_hold> Error: This function is to be overwritten")
+	return null
+
 func fire() -> void:
 	if !bullet_scene or bullet_timer or reload_timer or cur_ammo <= 0 : return
 	set_ammo(cur_ammo - 1)

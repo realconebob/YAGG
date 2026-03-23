@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://hijh8m2n641a" path="res://scenes/entities/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cwilmxtbjyabw" path="res://scenes/guns/gun_set.tscn" id="2_635qg"]
+[ext_resource type="PackedScene" uid="uid://damp4664crt7" path="res://testing/cursor_pointer.tscn" id="3_58kc7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
 
@@ -28,6 +29,8 @@ metadata/_edit_lock_ = true
 [node name="GunSet" parent="." unique_id=759794179 instance=ExtResource("2_635qg")]
 scale = Vector2(0.125, 0.125)
 metadata/_edit_lock_ = true
+
+[node name="CursorPointer" parent="." unique_id=354721787 instance=ExtResource("3_58kc7")]
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=315891601]
 
