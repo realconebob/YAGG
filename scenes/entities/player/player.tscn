@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://hijh8m2n641a" path="res://scenes/entities/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cwilmxtbjyabw" path="res://scenes/guns/gun_set.tscn" id="2_635qg"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 
 [node name="Player" type="CharacterBody2D" unique_id=535306126]
 motion_mode = 1
@@ -13,13 +13,21 @@ script = ExtResource("1_4flbx")
 metadata/_custom_type_script = "uid://bcrsvnc6506lt"
 metadata/_edit_lock_ = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2044731638]
-shape = SubResource("CapsuleShape2D_onrkg")
-
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1804173352]
 sprite_frames = SubResource("SpriteFrames_sh265")
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2044731638]
+shape = SubResource("CapsuleShape2D_onrkg")
+metadata/_edit_lock_ = true
+
+[node name="Hand" type="Node2D" parent="." unique_id=295037616]
+position = Vector2(10, 0)
+metadata/_edit_lock_ = true
 
 [node name="GunSet" parent="." unique_id=759794179 instance=ExtResource("2_635qg")]
+scale = Vector2(0.125, 0.125)
+metadata/_edit_lock_ = true
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=315891601]
 

@@ -30,6 +30,10 @@ func create_bullets() -> Array[BaseEntity]:
 	assert(false, "<BaseGun::instance_bullets> Error: This function is to be overwritten")
 	return []
 
+func get_gun_sprite() -> AnimatedSprite2D:
+	assert(false, "<BaseGun::get_gun_sprite> Error: This function is to be overwritten")
+	return null
+
 func fire() -> void:
 	if !bullet_scene or bullet_timer or reload_timer or cur_ammo <= 0 : return
 	set_ammo(cur_ammo - 1)

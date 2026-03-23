@@ -16,6 +16,7 @@ var aiming: Vector2
 @onready var enabled_guns: Array[BaseGun]
 
 @onready var cur_gun: BaseGun
+@onready var cur_gun_sprite: AnimatedSprite2D
 @onready var gun_ind: int = 0
 @onready var last_gun_ind: int = 0
 
@@ -28,6 +29,12 @@ func _init(guns_ready: Array[BaseGun] = [], aimpoint: Vector2 = Vector2.ZERO, re
 func _ready() -> void:
 	if len(enabled_guns) < 1:
 		enabled_guns = [available_gun_scenes[0].instantiate()] # The pistol will always be available
+
+	for gun in enabled_guns:
+		gun.visible = false
+		add_child(gun)
+	
+	select_gun(0)
 	
 	pass # Replace with function body.
 
@@ -53,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	if gun_ind != last_gun_ind:
 		# Update held gun
 		#$GunSprite.sprite_frames = gun_frames[gun_ind]
+		cur_gun_sprite = enabled_guns[gun_ind].get_gun_sprite()
 		last_gun_ind = gun_ind
 
 	# Set animation frame of gun depending on cursor position
@@ -60,7 +68,9 @@ func _physics_process(delta: float) -> void:
 	return
 
 func select_gun(index: int, mod: bool = true) -> int:
+	enabled_guns[gun_ind].visible = false
 	gun_ind = index % len(enabled_guns) if mod else gun_ind
+	enabled_guns[gun_ind].visible = true
 	return gun_ind
 
 func set_reading_input(reading_input: bool) -> void:

@@ -1,7 +1,18 @@
 extends BaseEntity
 
+@onready var hand_mag: float
+
 func _init() -> void:
 	super()
+
+func _ready() -> void:
+	super()
+	
+	var handpos: Vector2 = $Hand.position
+	hand_mag = handpos.length()
+	$GunSet.position = handpos
+	
+	return
 
 func _physics_process(delta: float) -> void:
 	var up := Input.is_action_pressed(&"move_up")
@@ -22,11 +33,14 @@ func _physics_process(delta: float) -> void:
 	return
 
 func point_to_cursor() -> void:
+	var gunset := $GunSet
 	var mouse_pos := get_global_mouse_position()
-
-	# TODO: This will be replaced with the gun
-	$GunSet.look_at(mouse_pos)
-
+	var theta: float = gunset.get_angle_to(mouse_pos)
+	
+	gunset.position = Vector2(hand_mag * cos(theta), hand_mag * sin(theta))
+	gunset.rotation = -theta
+		# What the fuck is going on
+	
 	# TODO: Update direction the player sprite is facing based on cursor pos
 
 	return

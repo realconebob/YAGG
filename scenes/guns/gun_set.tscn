@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://cwilmxtbjyabw"]
 
 [ext_resource type="Script" uid="uid://dyqalqige61lf" path="res://scenes/guns/gun_set.gd" id="1_txbdq"]
-[ext_resource type="SpriteFrames" uid="uid://bpwd0s78a8llf" path="res://assets/guns/revolver_frames.tres" id="2_tc84v"]
 
 [node name="GunSet" type="Node2D" unique_id=759794179]
 script = ExtResource("1_txbdq")
-
-[node name="GunSprite" type="AnimatedSprite2D" parent="." unique_id=896653765]
-sprite_frames = ExtResource("2_tc84v")
-animation = &"right"

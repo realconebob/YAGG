@@ -16,3 +16,6 @@ func create_bullets() -> Array[BaseEntity]:
 	
 	res.append(bullet)
 	return res
+	
+func get_gun_sprite() -> AnimatedSprite2D:
+	return $Sprites
