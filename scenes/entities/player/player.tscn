@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://oy0a41w282np"]
 
 [ext_resource type="Script" uid="uid://hijh8m2n641a" path="res://scenes/entities/player/player.gd" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://cwilmxtbjyabw" path="res://scenes/guns/gun_set.tscn" id="2_635qg"]
 [ext_resource type="PackedScene" uid="uid://damp4664crt7" path="res://testing/cursor_pointer.tscn" id="3_58kc7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
@@ -9,6 +8,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 
 [node name="Player" type="CharacterBody2D" unique_id=535306126]
+collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_4flbx")
 metadata/_custom_type_script = "uid://bcrsvnc6506lt"
@@ -24,10 +25,6 @@ metadata/_edit_lock_ = true
 
 [node name="Hand" type="Node2D" parent="." unique_id=295037616]
 position = Vector2(10, 0)
-metadata/_edit_lock_ = true
-
-[node name="GunSet" parent="." unique_id=759794179 instance=ExtResource("2_635qg")]
-scale = Vector2(0.125, 0.125)
 metadata/_edit_lock_ = true
 
 [node name="CursorPointer" parent="." unique_id=354721787 instance=ExtResource("3_58kc7")]

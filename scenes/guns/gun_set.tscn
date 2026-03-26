@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cwilmxtbjyabw"]
-
-[ext_resource type="Script" uid="uid://dyqalqige61lf" path="res://scenes/guns/gun_set.gd" id="1_txbdq"]
-
-[node name="GunSet" type="Node2D" unique_id=759794179]
-script = ExtResource("1_txbdq")

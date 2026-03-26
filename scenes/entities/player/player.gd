@@ -1,52 +1,58 @@
 extends BaseEntity
 
+@onready var gunset: GunSet = GunSet.new()
 @onready var hand_mag: float
 
-func _init() -> void:
-	super()
-
 func _ready() -> void:
-	super()
+	set_max_move_speed(12000)
+	add_child(gunset)
 	
 	var handpos: Vector2 = $Hand.position
 	hand_mag = handpos.length()
-	#$GunSet.position = handpos
 	
 	return
 
 func _physics_process(delta: float) -> void:
-	var up := Input.is_action_pressed(&"move_up")
-	var lf := Input.is_action_pressed(&"move_left")
-	var rt := Input.is_action_pressed(&"move_right")
-	var dw := Input.is_action_pressed(&"move_down")
-
-	var dir := Vector2.ZERO
-	if up: dir += Vector2(0, -1)
-	if lf: dir += Vector2(-1, 0)
-	if rt: dir += Vector2(1, 0)
-	if dw: dir += Vector2(0, 1)
-
-	set_accel(dir.normalized() * accel_rate)
+	var dir := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
+	set_accel((get_accel() / 2) + (dir * accel_rate))
+	
 	do_movement(delta)
-
+	handle_inputs()
 	point_to_cursor()
 	return
 
+func handle_inputs() -> void:
+	if Input.is_action_just_pressed(&"select_gun1"): gunset.select_gun(0)
+	if Input.is_action_just_pressed(&"select_gun2"): gunset.select_gun(1)
+	if Input.is_action_just_pressed(&"select_gun3"): gunset.select_gun(2)
+	if Input.is_action_just_pressed(&"select_gun4"): gunset.select_gun(3)
+	if Input.is_action_just_pressed(&"select_gun5"): gunset.select_gun(4)
+	if Input.is_action_just_pressed(&"cycle_up"): gunset.select_gun(gunset.get_gun_index() + 1)
+	if Input.is_action_just_pressed(&"cycle_down"): gunset.select_gun(gunset.get_gun_index() - 1)
+	
+	return
+
 func point_to_cursor() -> void:
-	var gunset := $GunSet
 	var cur_gun: BaseGun = gunset.get_cur_gun()
-	var barrel_end: Node2D = cur_gun.get_barrel_end() # For later
+	var barrel_end: Node2D = cur_gun.get_barrel()
 	
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	var pointing_vec: Vector2 = (mouse_pos - self.global_position) as Vector2
+	var pointing_vec: Vector2 = mouse_pos - self.global_position
 	var angle: float = pointing_vec.normalized().angle()
 	
 	gunset.global_rotation = angle
 	gunset.position.x = 25 * cos(angle - self.global_rotation)
 	gunset.position.y = 25 * sin(angle - self.global_rotation)
-	
-	# TODO: Include the hand_hold offset from the current gun
 
-	# TODO: Update direction the player sprite is facing based on cursor pos
+	if Input.is_action_pressed(&"shoot"):
+		cur_gun.set_target(mouse_pos)
+		cur_gun.set_bullet_pos(barrel_end.global_position)
+		gunset.fire()
 
 	return
+
+func get_gunset() -> GunSet:
+	return gunset
+	
+func get_type() -> String:
+	return "Player"

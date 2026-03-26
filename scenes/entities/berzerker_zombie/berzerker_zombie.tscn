@@ -6,6 +6,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tymvb"]
 
 [node name="BerzerkerZombie" type="CharacterBody2D" unique_id=1904138825]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("1_1sleh")
 metadata/_custom_type_script = "uid://d3a0yvamyd3j1"
 

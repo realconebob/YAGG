@@ -6,6 +6,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pksj6"]
 
 [node name="BasicZombie" type="CharacterBody2D" unique_id=610444671]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("1_tuotc")
 metadata/_custom_type_script = "uid://bcrsvnc6506lt"
 

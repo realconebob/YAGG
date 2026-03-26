@@ -5,7 +5,7 @@ const pbul_acr: float = 10000
 const pbul_dmp: float = 0
 
 func _init() -> void:
-	super(pbul_mms, Vector2.ZERO, pbul_acr, pbul_dmp, false, 5, 5, true)
+	super({mms = pbul_mms, accr = pbul_acr, damp = pbul_dmp}, {max_hp = 5})
 	return
 
 func _ready() -> void:
