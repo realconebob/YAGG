@@ -47,7 +47,6 @@ func _init(ammo_map: Dictionary[String, int] = ammo_defaults, timer_map: Diction
 	return
 
 func fire() -> void:
-	print("bullets: %d, bullet_timer.time_left: %f" % [bullets, bullet_timer.time_left])
 	if bullets <= 0 || bullet_timer.time_left > 0.0: return
 	set_bullets(bullets - 1)
 	bullet_timer = get_tree().create_timer(bullet_duration)
@@ -55,7 +54,6 @@ func fire() -> void:
 	return
 	
 func reload() -> void:
-	print("mags: %d, reload_timer.time_left: %f, bullets: %d (out of per mag: %d)" % [mags, reload_timer.time_left, bullets, bullets_per_mag])
 	if mags <= 0 || reload_timer.time_left > 0.0 || bullets == bullets_per_mag: return
 	set_mags(mags - 1)
 	set_bullets(bullets_per_mag)
