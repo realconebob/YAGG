@@ -13,11 +13,11 @@ func make_bullets(t: Vector2, p: Vector2) -> Array[BaseEntity]:
 	var bullet: BaseEntity = bullet_scene.instantiate()
 	
 	bullet.scale = Vector2.ONE * 0.5
-	bullet.look_at(target)
 	
 	bullet.set_max_speed(5000)
 	bullet.set_acc((t - p).normalized() * 10000)
 	bullet.global_position = p
+	bullet.look_at(target)
 	res.append(bullet)
 	
 	return res

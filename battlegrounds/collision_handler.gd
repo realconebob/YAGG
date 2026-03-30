@@ -54,13 +54,25 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 				
 			"Bullet":
 				var bullet: BaseEntity = collider.get_collider()
+				bullet.add_collision_exception_with(collidee)
+				
 				var zhealth := collidee.get_health()
 				var bhealth := bullet.get_health()
-				
 				collidee.set_health(zhealth - bhealth)
 				bullet.set_health(bhealth - zhealth)
 				return
 			
 		return
+	
+	if collidee.get_type() == "Bullet":
+		if !collider.get_collider().has_method("get_type"): return
+		if collider.get_collider().call("get_type") == "Zombie":
+			var zombie: BaseEntity = collider.get_collider()
+			collidee.add_collision_exception_with(zombie)
+			
+			var zhealth := zombie.get_health()
+			var bhealth := collidee.get_health()
+			zombie.set_health(zhealth - bhealth)
+			collidee.set_health(bhealth - zhealth)
 	
 	return
