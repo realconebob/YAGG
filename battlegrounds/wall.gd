@@ -1,3 +1,4 @@
+class_name Wall
 extends StaticBody2D
 
 func get_type() -> String:

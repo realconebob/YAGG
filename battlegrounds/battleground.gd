@@ -32,4 +32,4 @@ func _handle_bullets(bullets: Array[BaseEntity]) -> void:
 	
 func _kill(p: BaseEntity) -> void:
 	p.queue_free()
-	print("player died")
+	print("%s died" % p.get_type())

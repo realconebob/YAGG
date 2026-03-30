@@ -33,6 +33,10 @@ func _physics_process(delta: float) -> void:
 		gun.set_bullet_position(gun.get_barrel().global_position)
 		gunset.fire()
 		
+	if Input.is_action_just_pressed(&"reload"):
+		print("tried to reload")
+		gunset.get_current_gun().reload()
+		
 func get_gunset() -> GunManager:
 	return gunset
 
