@@ -30,6 +30,7 @@ const timer_defaults: Dictionary[String, float] = {
 
 @onready var target: Vector2 = Vector2.ZERO
 @onready var bpos: Vector2 = Vector2.ZERO
+@onready var pointing_angle: Vector2 = Vector2.ZERO
 
 @onready var reload_timer: SceneTreeTimer = get_tree().create_timer(0)
 @onready var bullet_timer: SceneTreeTimer = get_tree().create_timer(0)
@@ -50,7 +51,7 @@ func fire() -> void:
 	if bullets <= 0 || bullet_timer.time_left > 0.0: return
 	set_bullets(bullets - 1)
 	bullet_timer = get_tree().create_timer(bullet_duration)
-	fired.emit(make_bullets(target, bpos))
+	fired.emit(make_bullets(target, bpos, pointing_angle))
 	return
 	
 func reload() -> void:
@@ -94,17 +95,20 @@ func get_bullet_cooldown() -> float:
 
 func set_target(t: Vector2) -> void:
 	target = t
-	
 func get_target() -> Vector2:
 	return target
 
 func set_bullet_position(pos: Vector2) -> void:
 	bpos = pos
-	
 func get_bullet_position() -> Vector2:
 	return bpos
 
-func make_bullets(_target: Vector2, _position: Vector2) -> Array[BaseEntity]:
+func set_pointing(o: Vector2) -> void:
+	pointing_angle = o
+func get_pointing() -> Vector2:
+	return pointing_angle
+
+func make_bullets(_target: Vector2, _position: Vector2, _o: Vector2) -> Array[BaseEntity]:
 	assert(false, "<BaseGun::make_bullets> Error: This function is to be overwritten, not called")
 	return []
 

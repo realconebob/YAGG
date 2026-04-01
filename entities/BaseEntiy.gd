@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	) + (delta * accel)
 	
 	velocity = velocity.clamp(
-		Vector2.ONE * -max_speed, 
-		Vector2.ONE * max_speed
+		-max_speed * Vector2.ONE, 
+		max_speed * Vector2.ONE
 	)
 	
 	var collider := move_and_collide(velocity * delta)
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func set_acc(acc: Vector2) -> void:
-	accel = acc.clamp(Vector2.ONE * -max_accel, Vector2.ONE * max_accel)
+	accel = acc.clamp(-max_accel * Vector2.ONE, max_accel * Vector2.ONE)
 	
 func get_acc() -> Vector2:
 	return accel

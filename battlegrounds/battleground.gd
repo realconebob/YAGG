@@ -17,7 +17,7 @@ func _ready() -> void:
 		zombie.died.connect(_kill)
 	return
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for zombie in zombies:
 		if zombie != null && player != null:
 			zombie.set_target(player.position)

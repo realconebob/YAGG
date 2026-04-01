@@ -11,7 +11,7 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 		if (collider.get_collider().call("get_type") as String) == "Wall":
 			match collidee.get_type():
 				"Bullet":
-					collidee.queue_free()
+					collidee.set_health(0)
 					return
 				
 				"Player", "Zombie":

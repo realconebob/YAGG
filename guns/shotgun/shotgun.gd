@@ -10,8 +10,9 @@ func _ready() -> void:
 	set_reload_duration(6)
 	set_bullet_cooldown(0.75)
 
-func make_bullets(t: Vector2, p: Vector2) -> Array[BaseEntity]:
+func make_bullets(t: Vector2, p: Vector2, o: Vector2) -> Array[BaseEntity]:
 	var res: Array[BaseEntity] = []
+	var pointing := (t - p).normalized()
 	for i in range(9):
 		var bullet: BaseEntity = bullet_scene.instantiate()
 		var randrot: float = 0
@@ -22,7 +23,7 @@ func make_bullets(t: Vector2, p: Vector2) -> Array[BaseEntity]:
 			bullet.rotate(randrot)
 			randrot = randf_range(-1, 1) * 1/16 * PI
 		
-		var theta := (t - p).normalized().angle() + randrot
+		var theta := randrot + (pointing.angle() if !o else o.angle())
 		
 		bullet.set_max_speed(5000)
 		bullet.set_acc(Vector2(cos(theta), sin(theta)) * 10000)
