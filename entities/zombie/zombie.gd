@@ -1,3 +1,4 @@
+class_name Zombie
 extends BaseEntity
 
 var target: Vector2
@@ -17,3 +18,6 @@ func set_target(t: Vector2) -> void:
 
 func get_type() -> String:
 	return "Zombie"
+
+func get_point_value() -> int:
+	return 1

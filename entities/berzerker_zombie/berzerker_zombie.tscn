@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bm2rayrejm2b7"]
+
+[ext_resource type="Script" uid="uid://b556fojwolpt3" path="res://entities/berzerker_zombie/berzerker_zombie.gd" id="1_dko5g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uffnp"]
+radius = 16.0
+height = 52.0
+
+[node name="BerzerkerZombie" type="CharacterBody2D" unique_id=1355557148]
+script = ExtResource("1_dko5g")
+metadata/_custom_type_script = "uid://dbejrv5k4s6vl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54260077]
+shape = SubResource("CapsuleShape2D_uffnp")
