@@ -1,7 +1,7 @@
 extends BaseEntity
 
 func _ready() -> void:
-	super()
+	#super()
 	$VisibleOnScreenNotifier2D.screen_exited.connect(_handle_offscreen)
 	set_health(110.0/9.0)
 

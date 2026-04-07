@@ -15,8 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="YAGG"
+run/main_scene="uid://bepbu4oovn5f1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/wavemanager/plugin.cfg")
 
 [input]
 

@@ -1,9 +1,13 @@
 extends BaseEntity
 
-@onready var gunset: GunManager = GunManager.new()
+@onready var gunset: GunManager = GunManager.new():
+	get: return gunset
+
+func _init() -> void:
+	base_type = "Player"
 
 func _ready() -> void:
-	set_max_speed(12000)
+	max_speed = 12000
 	add_child(gunset)
 
 func _physics_process(delta: float) -> void:
@@ -37,9 +41,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"reload"):
 		print("tried to reload")
 		gunset.get_current_gun().reload()
-		
+
+## @deprecated: Implemented by Godot getter/setter syntax
 func get_gunset() -> GunManager:
 	return gunset
 
+## @deprecated: Implemented by Godot getter/setter syntax
 func get_type() -> String:
 	return "Player"

@@ -1,8 +1,18 @@
+@tool # I am very confused as to why this does not display a button for me to click when I have explicitly outlined buttons to click
 extends Node
 
 # Each wave / round will have a "difficulty level", which is some integer. The manager will then spawn some number
 # of zombies semi-randomly until all zombies have been spawned. Then the difficulty level is raised, and the cycle
 # repeated
+
+@export var tool_values: Array[int] = []
+@export var tool_target: int = 93
+
+@export_tool_button("Greedily Calculate Wave Points", "Callable") var gaction:
+	get: return func(): print(greedy_point_solver(tool_values, tool_target))
+
+@export_tool_button("Dynamically Calculate Wave Points", "Callable") var daction:
+	get: return func(): print(dynamic_point_solver(tool_values, tool_target))
 
 const zombie_types := {
 	base = preload("res://entities/zombie/zombie.tscn"),

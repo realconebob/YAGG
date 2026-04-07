@@ -1,8 +1,12 @@
 extends Zombie
 
+func _init() -> void:
+	super()
+
 func _ready() -> void:
-	set_max_acc(1200)
-	set_max_speed(6000)
+	max_accel = 1200
+	max_speed = 6000
+	points = 3
 
 func _physics_process(_delta: float) -> void:
 	#var dir: Vector2 = ((target - position) as Vector2).normalized()
@@ -10,5 +14,6 @@ func _physics_process(_delta: float) -> void:
 	#super(delta)
 	return
 
+## @deprecated: Implemented by Godot getter/setter syntax
 func get_point_value() -> int:
 	return 3

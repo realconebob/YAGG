@@ -57,6 +57,7 @@ shape = SubResource("RectangleShape2D_srqdn")
 
 [node name="Player" parent="." unique_id=86333956 instance=ExtResource("1_66gel")]
 position = Vector2(555, 250)
+metadata/_edit_lock_ = true
 
 [node name="Zombie" parent="." unique_id=253869572 instance=ExtResource("2_ildd2")]
 position = Vector2(185, 182)
@@ -66,3 +67,4 @@ position = Vector2(253, 424)
 
 [node name="WallScene" parent="." unique_id=1083401006 instance=ExtResource("4_xx3qu")]
 position = Vector2(359, 234)
+metadata/_edit_lock_ = true
