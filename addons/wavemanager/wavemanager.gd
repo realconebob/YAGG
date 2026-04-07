@@ -1,32 +1,18 @@
-@tool
 class_name WaveManager
-extends EditorPlugin
+extends Node
 
 const def_wave_target: int = 70
 const def_wave_difficulty_rate: float = def_wave_target * 0.5
 const def_wave_difficulty_accel: float = def_wave_difficulty_rate * 0.25
 
-#var dp: Array = []
-#var parent: Array = []
+var dp: Array = []
+var parent: Array = []
 
 @export_category("Wave Settings")
 @export var increment_vals: Array[int] = []
 @export var wave_target: int = def_wave_target							## zombies in a wave (z)
 @export var wave_difficulty_rate: float = def_wave_difficulty_rate		## extra zombies per wave (z/w)
 @export var wave_difficulty_accel: float = def_wave_difficulty_accel	## extra zombies per wave per wave (z/w^2)
-
-@export_category("Wave Calculation")
-@export var num_waves: int = 1
-@export_tool_button("Update Wave Target", "Callable") var waction:
-	get: return func(): 
-		var res := update_wave_target(num_waves)
-		print(
-			"Update Wave Target\n" + 
-			"\t> New wave target: %d\n"				% res[0] + 
-			"\t> New wave difficulty rate: %d\n"	% res[1] + 
-			"\t> New wave difficulty accel: %d\n"	% res[2]
-		)
-
 
 func _run_point_calc(prefix:String, calculator: Callable) -> void:
 	var res := calculator.call(increment_vals, wave_target)
@@ -41,35 +27,10 @@ func _run_point_calc(prefix:String, calculator: Callable) -> void:
 	)
 	return
 
-@export_tool_button("Greedily Calculate Wave Points", "Callable") var gaction:
-	get: return func() -> void: _run_point_calc("Greedy", greedy_point_solver)
-@export_tool_button("Dynamically Calculate Wave Points", "Callable") var daction:
-	get: return func() -> void: _run_point_calc("Dynamic", dynamic_point_solver)
-
-
-func _enable_plugin() -> void:
-	# Add autoloads here.
-	pass
-
-
-func _disable_plugin() -> void:
-	# Remove autoloads here.
-	pass
-
-
-func _enter_tree() -> void:
-	# Initialization of the plugin goes here.
+func _ready() -> void:
+	dp.append(0)
+	parent.append(-1)
 	return
-
-
-func _exit_tree() -> void:
-	# Clean-up of the plugin goes here.
-	pass
-
-#func _ready() -> void:
-	#dp = [0]
-	#parent = [-1]
-	#return
 
 # Not sure why this isn't working as expected
 static func expand_array(arr: Array, size: int, fill_value: Variant) -> void:
@@ -134,8 +95,8 @@ func dynamic_point_solver(pointvals: Array[int], target: int) -> Array[Variant]:
 		return []
 
 	var pointcpy: Array[int] = pointvals.duplicate()
-	var dp := []
-	var parent := []
+	#var dp := []
+	#var parent := []
 
 	# Set up arrays
 	if 0 in pointcpy: pointcpy.erase(0)

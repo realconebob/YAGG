@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cxdovgyjfghfp"]
+
+[ext_resource type="Script" uid="uid://y5gb3mrjmmcd" path="res://addons/wavemanager/testing_dock.gd" id="1_pms7y"]
+
+[node name="TestingDock" type="VBoxContainer" unique_id=713911685]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pms7y")
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=108846801]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=24412730]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/CenterContainer" unique_id=1432721174]
+layout_mode = 2
+columns = 2
+
+[node name="Wave Target" type="Label" parent="PanelContainer/CenterContainer/GridContainer" unique_id=869948663]
+layout_mode = 2
+text = "Wave Target"
+vertical_alignment = 1
+
+[node name="WTSpinBox" type="SpinBox" parent="PanelContainer/CenterContainer/GridContainer" unique_id=1451006557]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 20.0
+rounded = true
+allow_greater = true
+alignment = 2
+
+[node name="Wave Rate" type="Label" parent="PanelContainer/CenterContainer/GridContainer" unique_id=1257896404]
+layout_mode = 2
+text = "Wave Rate"
+vertical_alignment = 1
+
+[node name="WRSpinBox" type="SpinBox" parent="PanelContainer/CenterContainer/GridContainer" unique_id=233204548]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 10.0
+rounded = true
+allow_greater = true
+alignment = 2
+
+[node name="Wave Accel" type="Label" parent="PanelContainer/CenterContainer/GridContainer" unique_id=1061380876]
+layout_mode = 2
+text = "Wave Accel"
+vertical_alignment = 1
+
+[node name="WASpinBox" type="SpinBox" parent="PanelContainer/CenterContainer/GridContainer" unique_id=515387657]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+value = 2.5
+allow_greater = true
+alignment = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1162636138]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2" unique_id=963058670]
+layout_mode = 2
+
+[node name="UWaveTargets" type="Button" parent="PanelContainer2/VBoxContainer" unique_id=145408583]
+layout_mode = 2
+text = "Update Wave Targets"
+
+[node name="Greedy" type="Button" parent="PanelContainer2/VBoxContainer" unique_id=1468427019]
+layout_mode = 2
+text = "Greedy Calculate"
+
+[node name="Dynamic" type="Button" parent="PanelContainer2/VBoxContainer" unique_id=859109944]
+layout_mode = 2
+text = "Dynamic Calculate"
