@@ -19,7 +19,7 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/CenterContainer" unique_id=1432721174]
 layout_mode = 2
-columns = 2
+columns = 3
 
 [node name="Wave Target" type="Label" parent="PanelContainer/CenterContainer/GridContainer" unique_id=869948663]
 layout_mode = 2
@@ -34,6 +34,10 @@ rounded = true
 allow_greater = true
 alignment = 2
 
+[node name="WTReset" type="Button" parent="PanelContainer/CenterContainer/GridContainer" unique_id=41167459]
+layout_mode = 2
+text = "Reset"
+
 [node name="Wave Rate" type="Label" parent="PanelContainer/CenterContainer/GridContainer" unique_id=1257896404]
 layout_mode = 2
 text = "Wave Rate"
@@ -47,6 +51,10 @@ rounded = true
 allow_greater = true
 alignment = 2
 
+[node name="WRReset" type="Button" parent="PanelContainer/CenterContainer/GridContainer" unique_id=360120272]
+layout_mode = 2
+text = "Reset"
+
 [node name="Wave Accel" type="Label" parent="PanelContainer/CenterContainer/GridContainer" unique_id=1061380876]
 layout_mode = 2
 text = "Wave Accel"
@@ -56,9 +64,12 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
-value = 2.5
 allow_greater = true
 alignment = 2
+
+[node name="WAReset" type="Button" parent="PanelContainer/CenterContainer/GridContainer" unique_id=416175298]
+layout_mode = 2
+text = "Reset"
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1162636138]
 layout_mode = 2
@@ -77,3 +88,22 @@ text = "Greedy Calculate"
 [node name="Dynamic" type="Button" parent="PanelContainer2/VBoxContainer" unique_id=859109944]
 layout_mode = 2
 text = "Dynamic Calculate"
+
+[node name="PanelContainer3" type="PanelContainer" parent="." unique_id=1066746217]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer3" unique_id=999122008]
+layout_mode = 2
+
+[node name="SlotsContainer" type="GridContainer" parent="PanelContainer3/CenterContainer" unique_id=726690868]
+layout_mode = 2
+columns = 2
+
+[node name="Slots Label" type="Label" parent="PanelContainer3/CenterContainer/SlotsContainer" unique_id=1871071461]
+layout_mode = 2
+text = "Slots"
+
+[node name="NumSlots" type="SpinBox" parent="PanelContainer3/CenterContainer/SlotsContainer" unique_id=256951339]
+layout_mode = 2
+rounded = true
+allow_greater = true

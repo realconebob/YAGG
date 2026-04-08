@@ -48,7 +48,7 @@ static func expand_array(arr: Array, size: int, fill_value: Variant) -> void:
 	return
 
 
-func update_wave_target(waves: int = 1) -> Array[int]:
+func update_wave_target(waves: int = 1) -> Array[float]:
 	@warning_ignore("narrowing_conversion")
 	wave_target += wave_difficulty_rate * waves
 	wave_difficulty_rate += wave_difficulty_accel * waves
