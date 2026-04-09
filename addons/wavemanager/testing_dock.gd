@@ -16,7 +16,7 @@ const def_accel: float = def_rate * 0.25
 @onready var rwrbutton: Button = $PanelContainer/CenterContainer/GridContainer/WRReset
 @onready var rwabutton: Button = $PanelContainer/CenterContainer/GridContainer/WAReset
 
-@onready var sspin: SpinBox = $PanelContainer3/CenterContainer/SlotsContainer/NumSlots
+@onready var sspin: SpinBox = $PanelContainer3/CenterContainer/SlotsContainer/HBoxContainer/NumSlots
 
 @onready var target := def_target:
 	get: return target
@@ -111,26 +111,42 @@ func make_separator_button(label: String= "", icon: Texture2D = null) -> Button:
 	
 	return btn
 
-@onready var old: float = sspin.value 
+@onready var old: float = 0
 var bs: Array[Variant] = []
+var vals: Array[int] = []
 func do_slots(n: int) -> void:
 	if n < old:
-		for i in range(bs.size() - 1, old, -1):
+		for i in range(bs.size() - 1, n - 1, -1):
 			$PanelContainer3/CenterContainer/SlotsContainer.remove_child(bs[i])
 			bs[i].queue_free()
+			bs[i] = null
 		bs.resize(n)
+		vals.resize(n)
 	
 	if n > old:
 		var prior := bs.size()
 		bs.resize(n)
+		vals.resize(n)
 		for i in range(prior, n):
 			bs[i] = _new_bs_sb(n)
 			$PanelContainer3/CenterContainer/SlotsContainer.add_child(bs[i])
 	
-	print(bs)
 	old = n
 	return
 
+func _new_bs_label(n: int) -> Label:
+	var res := Label.new()
+	res.text = "Entry %d" % n
+	return res
+
 func _new_bs_sb(n: int) -> SpinBox:
 	var res := SpinBox.new()
+	res.allow_greater = true
+	res.step = 1
+	res.rounded = true
+	res.value_changed.connect(
+		func(f: float) -> void:
+			vals[n - 1] = f
+			waveman.increment_vals = vals.duplicate()
+	)
 	return res

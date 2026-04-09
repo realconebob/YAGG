@@ -46,7 +46,7 @@ vertical_alignment = 1
 [node name="WRSpinBox" type="SpinBox" parent="PanelContainer/CenterContainer/GridContainer" unique_id=233204548]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 10.0
+value = 5.0
 rounded = true
 allow_greater = true
 alignment = 2
@@ -64,6 +64,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
+value = 1.25
 allow_greater = true
 alignment = 2
 
@@ -97,13 +98,15 @@ layout_mode = 2
 
 [node name="SlotsContainer" type="GridContainer" parent="PanelContainer3/CenterContainer" unique_id=726690868]
 layout_mode = 2
-columns = 2
 
-[node name="Slots Label" type="Label" parent="PanelContainer3/CenterContainer/SlotsContainer" unique_id=1871071461]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer3/CenterContainer/SlotsContainer" unique_id=1120205547]
+layout_mode = 2
+
+[node name="Slots Label" type="Label" parent="PanelContainer3/CenterContainer/SlotsContainer/HBoxContainer" unique_id=1871071461]
 layout_mode = 2
 text = "Slots"
 
-[node name="NumSlots" type="SpinBox" parent="PanelContainer3/CenterContainer/SlotsContainer" unique_id=256951339]
+[node name="NumSlots" type="SpinBox" parent="PanelContainer3/CenterContainer/SlotsContainer/HBoxContainer" unique_id=256951339]
 layout_mode = 2
 rounded = true
 allow_greater = true
