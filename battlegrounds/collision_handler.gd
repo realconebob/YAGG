@@ -11,16 +11,16 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 		if (collider.get_collider().call("get_type") as String) == "Wall":
 			match collidee.get_type():
 				"Bullet":
-					collidee.set_health(0)
+					collidee.health = 0
 					return
 				
 				"Player", "Zombie":
 					# Translate movement to normal without losing speed
-					#collidee.set_acc(collidee.get_acc().slide(collider.get_normal()).normalized() * collidee.get_acc().length())
+					#collidee.accel = (collidee.accel.slide(collider.get_normal()).normalized() * collidee.accel.length())
 					#collidee.velocity = collidee.velocity.slide(collider.get_normal()).normalized() * collidee.velocity.length()
 					
 					# Bounce
-					collidee.set_acc(collidee.get_acc().bounce(collider.get_normal()))
+					collidee.accel = (collidee.accel.bounce(collider.get_normal()))
 					collidee.velocity = collidee.velocity.bounce(collider.get_normal())
 					return
 			
@@ -29,8 +29,8 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 	if collidee.get_type() == "Player":
 		if !collider.get_collider().has_method("get_type"): return
 		if collider.get_collider().call("get_type") == "Zombie":
-				collidee.set_health(collidee.get_health() - 1)
-				collidee.set_acc(collidee.get_acc().bounce(collider.get_normal()).normalized() * collidee.get_acc().length() * 100)
+				collidee.health = (collidee.health - 1)
+				collidee.accel = (collidee.accel.bounce(collider.get_normal()).normalized() * collidee.accel.length() * 100)
 				collidee.velocity = collidee.velocity.bounce(collider.get_normal())
 				return
 			
@@ -41,14 +41,14 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 		match collider.get_collider().call("get_type"):
 			"Player":
 				var player: BaseEntity = collider.get_collider()
-				player.set_health(player.get_health() - 1)
+				player.health = (player.health - 1)
 				
-				collidee.set_acc(collidee.get_acc().bounce(collider.get_normal()).normalized() * collidee.get_acc().length() * 100)
+				collidee.accel = (collidee.accel.bounce(collider.get_normal()).normalized() * collidee.accel.length() * 100)
 				collidee.velocity = collidee.velocity.bounce(collider.get_normal()) * 10
 				return
 				
 			"Zombie":
-				collidee.set_acc(collidee.get_acc().bounce(collider.get_normal()))
+				collidee.accel = (collidee.accel.bounce(collider.get_normal()))
 				collidee.velocity = collidee.velocity.bounce(collider.get_normal())
 				return
 				
@@ -56,10 +56,10 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 				var bullet: BaseEntity = collider.get_collider()
 				bullet.add_collision_exception_with(collidee)
 				
-				var zhealth := collidee.get_health()
-				var bhealth := bullet.get_health()
-				collidee.set_health(zhealth - bhealth)
-				bullet.set_health(bhealth - zhealth)
+				var zhealth := collidee.health
+				var bhealth := bullet.health
+				collidee.health = (zhealth - bhealth)
+				bullet.health = (bhealth - zhealth)
 				return
 			
 		return
@@ -70,9 +70,9 @@ func handle_collision(collider: KinematicCollision2D, collidee: BaseEntity) -> v
 			var zombie: BaseEntity = collider.get_collider()
 			collidee.add_collision_exception_with(zombie)
 			
-			var zhealth := zombie.get_health()
-			var bhealth := collidee.get_health()
-			zombie.set_health(zhealth - bhealth)
-			collidee.set_health(bhealth - zhealth)
+			var zhealth := zombie.health
+			var bhealth := collidee.health
+			zombie.health = (zhealth - bhealth)
+			collidee.health = (bhealth - zhealth)
 	
 	return

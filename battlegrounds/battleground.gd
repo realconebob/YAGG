@@ -10,7 +10,7 @@ const BasicZombie := preload("res://entities/zombie/zombie.tscn")
 @onready var player := $Player
 
 func _ready() -> void:
-	for gun in (player.get_gunset() as GunManager).get_enabled_guns():
+	for gun in (player.gunset as GunManager).enabled_guns:
 		gun.fired.connect(_handle_bullets)
 
 	waveman.increment_vals = [1]
@@ -27,7 +27,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	for zombie in zombies:
 		if zombie != null && player != null:
-			zombie.set_target(player.position)
+			zombie.target = player.position
 
 func _handle_bullets(bullets: Array[BaseEntity]) -> void:
 	for bullet in bullets:

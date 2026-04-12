@@ -6,9 +6,7 @@ const bullet_scene := preload("res://guns/shotgun/shotgun_bullet.tscn")
 @onready var barrel: Node2D = $BarrelEnd
 
 func _ready() -> void:
-	set_bullets_per_mag(6)
-	set_reload_duration(6)
-	set_bullet_cooldown(0.75)
+	bullet_cooldown = 0.75
 
 func make_bullets(t: Vector2, p: Vector2, o: Vector2) -> Array[BaseEntity]:
 	var res: Array[BaseEntity] = []
@@ -25,8 +23,8 @@ func make_bullets(t: Vector2, p: Vector2, o: Vector2) -> Array[BaseEntity]:
 		
 		var theta := randrot + (pointing.angle() if !o else o.angle())
 		
-		bullet.set_max_speed(5000)
-		bullet.set_acc(Vector2(cos(theta), sin(theta)) * 10000)
+		bullet.max_speed = 5000
+		bullet.accel = Vector2(cos(theta), sin(theta)) * 10000
 		bullet.global_position = p
 		res.append(bullet)
 	

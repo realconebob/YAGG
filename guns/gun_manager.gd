@@ -10,7 +10,15 @@ var enabled_guns: Array[BaseGun] = [
 	available_gun_scenes[0].instantiate(),
 	available_gun_scenes[1].instantiate(),
 ]
-var gunidx: int = -1
+	
+var gunidx: int = -1:
+	set(n):
+		var last_gunidx := gunidx
+		gunidx = max(0, min(n, len(enabled_guns) - 1))
+		
+		if gunidx != last_gunidx:
+			enabled_guns[last_gunidx].visible = false
+			enabled_guns[gunidx].visible = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,27 +35,13 @@ func _ready() -> void:
 		gun.visible = false
 		add_child(gun)
 		
-	set_gun_index(0)
+	gunidx = 0
 	return
 
-func fire() -> void:
+func fire(cash: float) -> bool:
 	var cgun := get_current_gun()
-	cgun.fire()
-	return
-	
-func set_gun_index(i: int) -> void:
-	var last_gunidx := gunidx
-	gunidx = max(0, min(i, len(enabled_guns) - 1))
-	
-	if gunidx != last_gunidx:
-		enabled_guns[last_gunidx].visible = false
-		enabled_guns[gunidx].visible = true
-	
-func get_gun_index() -> int:
-	return gunidx
+	if cash - cgun.cost < 0: return false
+	return cgun.fire()
 	
 func get_current_gun() -> BaseGun:
 	return enabled_guns[gunidx]
-	
-func get_enabled_guns() -> Array[BaseGun]:
-	return enabled_guns
