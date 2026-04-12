@@ -1,18 +1,30 @@
 class_name WaveManager
 extends Node
 
-const def_wave_target: int = 70
+const def_wave_target: int = 20
 const def_wave_difficulty_rate: float = def_wave_target * 0.5
 const def_wave_difficulty_accel: float = def_wave_difficulty_rate * 0.25
 
 var dp: Array = []
 var parent: Array = []
 
-@export_category("Wave Settings")
-@export var increment_vals: Array[int] = []
-@export var wave_target: int = def_wave_target							## zombies in a wave (z)
-@export var wave_difficulty_rate: float = def_wave_difficulty_rate		## extra zombies per wave (z/w)
-@export var wave_difficulty_accel: float = def_wave_difficulty_accel	## extra zombies per wave per wave (z/w^2)
+var increment_vals: Array[int] = []:
+	set(n): 
+		if !n: 
+			increment_vals = []
+			return
+		increment_vals = n
+
+var inc_map: Dictionary[int, Callable] = {}:
+	set(n):
+		if !n:
+			inc_map = {}
+			return
+		inc_map = n
+
+var wave_target: int = def_wave_target							## zombies in a wave (z)
+var wave_difficulty_rate: float = def_wave_difficulty_rate		## extra zombies per wave (z/w)
+var wave_difficulty_accel: float = def_wave_difficulty_accel	## extra zombies per wave per wave (z/w^2)
 
 func _run_point_calc(prefix:String, calculator: Callable) -> void:
 	var res := calculator.call(increment_vals, wave_target)
@@ -46,7 +58,6 @@ static func expand_array(arr: Array, size: int, fill_value: Variant) -> void:
 		arr[i] = fill_value
 	
 	return
-
 
 func update_wave_target(waves: int = 1) -> Array[float]:
 	@warning_ignore("narrowing_conversion")
@@ -140,3 +151,28 @@ func dynamic_point_solver(pointvals: Array[int], target: int) -> Array[Variant]:
 		total += value
 	
 	return [used, total, remainder]
+
+func _spawn_wave(pointvals: Array[int], target: int, spawnermap: Dictionary[int, Callable], method: Callable) -> Array[BaseEntity]:
+	if !pointvals or !spawnermap or !method or target < 1: return []
+	var calcres := method.call(pointvals, target)
+	if !calcres: return []
+	var pointdict: Dictionary[int, int] = calcres[0]
+	
+	var res: Array[BaseEntity] = []
+	for i in pointdict.keys():
+		var tospawn := pointdict.get(i, 0)
+		var spawner := spawnermap.get(i, func() -> void: print("<WaveManager::_spawn_wave> Error: Could not add zombie with value %d to pool, instantiating function is null" % i))
+		for j in range(0, tospawn):
+			var spawnres = spawner.call()
+			if !spawnres: continue
+			res.append(spawnres)
+	
+	return res
+	
+enum WaveCalcType {UNSPEC, DYNAMIC, GREEDY, TOO_BIG}
+func spawn_wave(method: WaveCalcType) -> Array[BaseEntity]:
+	var cb: Callable
+	match method:
+		WaveCalcType.DYNAMIC: return _spawn_wave(increment_vals, wave_target, inc_map, dynamic_point_solver)
+		WaveCalcType.GREEDY: return _spawn_wave(increment_vals, wave_target, inc_map, greedy_point_solver)
+		WaveCalcType.UNSPEC, WaveCalcType.TOO_BIG, _: return []
