@@ -18,9 +18,15 @@ func _ready() -> void:
 		
 	player.collided.connect(chandler.handle_collision)
 	player.died.connect(_kill)
-	for zombie in waveman._spawn_wave([1], 20, {1: func() -> BaseEntity: return BasicZombie.instantiate()}, waveman.dynamic_point_solver):
+	
+	# Just checking that zombie spawning actually works
+	var vsize = get_viewport_rect().size
+	for zombie in waveman.spawn_wave(WaveManager.WaveCalcType.DYNAMIC):
 		zombie.collided.connect(chandler.handle_collision)
 		zombie.died.connect(_kill)
+		zombie.position = Vector2(randf_range(0, vsize.x), randf_range(0, vsize.y))
+		add_child(zombie)
+		zombies.append(zombie)
 		
 	return
 
